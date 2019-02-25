@@ -1,17 +1,27 @@
 {
-  "name": "social-network",
+  "name": "nayrojas-md-links",
   "version": "1.0.0",
-  "description": "Social Network @ Laboratoria",
-  "main": "src/index.html",
+  "description": "[Markdown](https://medium.com/@itsjzt/beginner-guide-to-markdown-229adce30074) es un lenguaje de marcado\r ligero muy popular entre developers. Markdown is made by John Gruber, you can use markdown to write blogs, texts, books and practically 100% of your writing work in a single format and you can easily distribute it in Word, PDFs, EPUBs, HTML, and many other formats.",
+  "main": "index.html",
   "keywords": [
     "javascript",
     "npm",
     "jest"
   ],
   "license": "MIT",
+  "author": "nayrojas",
   "scripts": {
     "eslint": "eslint --ext .js src/ test/",
     "test": "jest --coverage"
+  },
+  "bin": {
+    "md-links": "./cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "bugs": {
+      "url": "https://github.com/NayRojas/LIM008-fe-md-links/issues"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -24,4 +34,3 @@
     "regenerator-runtime": "^0.13.1"
   }
 }
-

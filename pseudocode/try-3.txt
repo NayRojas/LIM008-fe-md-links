@@ -1,0 +1,57 @@
+Este programa/libreria te permite obtener el href y texto de los links de archivos markdown y analizar los links únicos, rotos y totales.
+
+1. INICIO
+2. Lee path options
+3. SI path = absolute
+    ENTONCES
+    Leer path
+   SI NO
+      SI path = relative
+        ENTONCES
+        Function (Convertir path = absolute)
+        Leer path
+      SI NO 
+        Imprimir "Ingresar una ruta válida"
+  - FIN de condición -
+4. SI path = file
+    ENTONCES 
+    SI file = .md
+      ENTONCES
+      Función (buscar links de file
+               leer links
+               obteniendo su href y texto 
+               almacenar href y texto en un array de objetos)
+      SI texto.length > 50
+        ENTONCES 
+        Función (Limitar text.length = 50)
+    SI NO 
+      Imprimir "Ingrese archivo md"
+   SI NO
+4.1 SI path = dir
+      ENTONCES
+      Función(Leer dir
+              Aplicar recursión a dir
+              Ejecutar caso base: Find file.md)
+    SI NO 
+      Imprimir "Ingresar una ruta válida"
+  - FIN de condición -
+
+5. SI options = '' || undefined
+    ENTONCES
+    Imprimir path, href y text.
+5.1   SI NO --validate
+        ENTONCES 
+        función Validate (validar links de array = OK si no FAIL y almacenar en array)
+5.1.1 Imprimir path, href, text y OK o FAIL
+5.2   DE LO CONTRARIO --stats
+        ENTONCES
+        función StatsTotal (calcular links totales de array y almacenar en array)
+        función StatsUnique (calcular links únicos de array y almacenar en array)
+5.2.1 Imprimir links totales y únicos
+5.3   SI NO --validate y --stats
+        ENTONCES
+        función optionVal (calcular links broken ejecutando función Validate obteniendo solo FAIL y almacenar en array)
+        función optionStats (calcular links totales y unicos ejecutando la función StatsTotal y StatsUnique y almacenar en array)
+ - FIN de condición -
+5.3.1   Imprimir links totales, únicos y broken 
+6. Fin

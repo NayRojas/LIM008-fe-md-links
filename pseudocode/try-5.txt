@@ -1,0 +1,61 @@
+Este programa/libreria te permite obtener el href y texto de los links de archivos markdown y analizar los links únicos, rotos y totales.
+
+1. INICIO
+2. Lee P, O
+3. SI P = A
+    ENTONCES Leer P
+    SI NO
+        SI P = R
+            ENTONCES FnConvert ( P = A)
+                     Leer P 
+        SI NO 
+            Imprimir "Ingresar una ruta válida"
+  - FIN de condición -
+4. SI P = F 
+    ENTONCES SI F = .md
+        ENTONCES FnLink(
+                    recorrer L de F
+                    leer L
+                    obtener su href y text
+                    almacenar href y text en un ARR
+                    )
+                SI text.length > 50
+                    ENTONCES FnLimitText (
+                                Limit text.length = 50
+                                )
+                    
+      
+   SI NO
+4.1 SI P = D
+      ENTONCES FnDir(
+                  Leer D
+                  Recursión a D
+                  Ejecutar caso base: Find f.md
+                 )
+      
+    SI NO 
+      Imprimir "Ingresar una ruta válida"
+  - FIN de condición -
+
+5. SI O = null
+    ENTONCES Imprimir P, href y text.
+5.1     SI NO --validate
+        ENTONCES fn -V (
+                        validar L de ARR = OK si no FAIL y ARR.push(result de Fn -V)
+                        ) 
+5.1.1 Imprimir P, href, texto, OK o FAIL
+5.2     SI NO --stats
+        ENTONCES fn -S (
+                            calcular L total y unique de ARR y ARR.push(result de fn -S)
+                            )
+5.2.1 Imprimir P y total y StatsUnique
+5.3     SI NO --validate y --stats
+        ENTONCES fn optionV (
+                            calcular broken de L FAIL de fn -V  y ARR.push(result fn optionV)
+                            )
+                 fn optionS (
+                            calcular L total y unique de fn -S y StatsUnique y ARR.push(result optionS)
+                            )
+5.3.1 Imprimir P, total, unique y broken con su valor númerico según resultado de funcion
+  - FIN de condición -
+6.Fin
