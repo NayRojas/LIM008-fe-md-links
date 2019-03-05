@@ -6,3 +6,22 @@ const options = {
     validate: true,
     stats: false
 };
+
+mdLinks(path)
+    .then(links => {
+    // => [{ href, text, file }]
+    })
+    .catch(console.error);
+
+    mdLinks(path, { validate: true })
+        .then(links => {
+        // => [{ href, text, file, status, ok }]
+        })
+        .catch(console.error);
+
+    mdLinks(path)
+        .then(links => {
+        // => [{ href, text, file }]
+        })
+        .catch(console.error);
+
