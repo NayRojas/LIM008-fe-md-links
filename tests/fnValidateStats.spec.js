@@ -25,10 +25,9 @@ describe('statsValidate', () => {
                 "status": "FAIL",
                 "text": "Markdown",
                 }]
-        ).then(arrayLinks => {
-          expect(arrayLinks).toEqual([{
-            "broken": 2,
-            }]);
+        ).then(arrayLinkObj => {
+          expect(arrayLinkObj).toEqual(
+            {broken: 2});
           done();
         });
       });
