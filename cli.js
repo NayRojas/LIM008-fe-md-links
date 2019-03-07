@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const mdLinks = require('./index')
+const mdLinks = require('./md-links')
 const [, , ...params] = process.argv;
 
 const options = {
@@ -7,8 +7,9 @@ const options = {
     stats: false
 };
 
-mdLinks(path)
+mdLinks(path, options)
     .then(links => {
+
     // => [{ href, text, file }]
     })
     .catch(console.error);

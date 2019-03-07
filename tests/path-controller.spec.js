@@ -51,7 +51,7 @@ describe.skip('readPath', () => {
   });
 });
 
-describe('linkExtract', () => {
+describe.skip('linkExtract', () => {
   it('debería ser una función', () => {
     expect(typeof linkExtract).toBe('function');
   });
