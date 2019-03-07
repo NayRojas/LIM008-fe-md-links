@@ -1,6 +1,6 @@
 import { fnStats } from '../lib/services/fnStats.js'
 
-describe('fnStats', () => {
+describe.skip('fnStats', () => {
     it('debería ser una función', () => {
       expect(typeof fnStats).toBe('function');
     });

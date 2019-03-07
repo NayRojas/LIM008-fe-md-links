@@ -1,17 +1,20 @@
 import { linkValidate } from '../lib/services/fnValidate.js'
 
 
-describe.skip('linkValidate', () => {
+describe('linkValidate', () => {
   it('debería ser una función', () => {
     expect(typeof linkValidate).toBe('function');
   });
   it('debería retornar el código http al hacer la petición http para conocer si el link funciona o no', (done) => {
     linkValidate(
       [{ href: 'https://es.wikipedia.org/wiki/Markdown'},
-      {href: 'https://es.wikipedia.org/wiki/Markdown'}]
+      {href: 'https://es.wikipedia.org/wiki/Markdowntome'},
+      {href: 'https://es.noexiste.org/'}]
     ).then(arrayLinks => {
-      expect(arrayLinks).toEqual([{"code": 200, "href": "https://es.wikipedia.org/wiki/Markdown", "status": "OK"}, {"code": 200,
-      "href": "https://es.wikipedia.org/wiki/Markdown", "status": "OK"}]);
+      expect(arrayLinks).toEqual([{"code": 200, "href": "https://es.wikipedia.org/wiki/Markdown", "status": "OK"}, 
+      {"code": 404,
+      "href": "https://es.wikipedia.org/wiki/Markdowntome", "status": "FAIL"}, {"code": 'Página no encontrada',
+      "href": "https://es.noexiste.org/", "status": "FAIL"}]);
       done();
     });
   });
