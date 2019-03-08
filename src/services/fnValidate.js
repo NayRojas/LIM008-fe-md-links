@@ -15,11 +15,7 @@ var linkValidate = function linkValidate(arrayLinks) {
           link.code = res.status;
           link.status = res.statusText;
           resolve(link);
-        } else if (res.status >= 400 && res.status < 500) {
-          link.code = res.status;
-          link.status = 'FAIL';
-          resolve(link);
-        } else if (res.status >= 500 && res.status < 600) {
+        } else {
           link.code = res.status;
           link.status = 'FAIL';
           resolve(link);

@@ -1,1 +1,1 @@
-[Markdown](https:\\es.wikipedia.org\wiki\Markdowntome) es un lenguaje de marcado ligero muy popular entre developers. 
+[Markdown](https://nodeschool.io/s/) es un lenguaje de marcado ligero muy popular entre developers. 

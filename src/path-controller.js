@@ -3,17 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.linkExtract = exports.pathFiles = exports.pathToAbsolute = exports.isAbsolute = void 0;
+exports.linkExtract = exports.pathFiles = exports.pathToAbsolute = void 0;
 
 var fs = require('fs');
 
 var path = require('path');
-
-var isAbsolute = function isAbsolute(route) {
-  return path.isAbsolute(route);
-};
-
-exports.isAbsolute = isAbsolute;
 
 var pathToAbsolute = function pathToAbsolute(route) {
   if (!isAbsolute(route)) return path.resolve(route);

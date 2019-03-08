@@ -1,18 +1,6 @@
 import { pathToAbsolute, isAbsolute, pathFiles, readPath, linkExtract } from '../lib/path-controller.js';
 const path = require('path'); 
 
-describe.skip('isAbsolute', () => {
-  it('debería ser una función', () => {
-    expect(typeof isAbsolute).toBe('function');
-  });
-  it('devuelve true si ruta es absoluta', () => {
-    expect(isAbsolute('C:\\carpeta2\\archivo1.md')).toBe(true);
-  });
-  it('devuelve false si ruta es relativa', () => {
-    expect(isAbsolute('carpeta2\\archivo1.md')).toBe(false);
-  });
-});
-
 describe.skip('pathToAbsolute', () => {
   it('debería ser una función', () => {
     expect(typeof pathToAbsolute).toBe('function');

@@ -1,5 +1,7 @@
 import { linkExtract, isAbsolute, pathToAbsolute, pathFiles } from './lib/path-controller.js';
 import { linkValidate } from './lib/services/fnValidate.js';
+const path = require('path');
+
 
 /**
  * 
@@ -11,21 +13,25 @@ import { linkValidate } from './lib/services/fnValidate.js';
 // 2. Ver las fuciones que intervienen en el caso de error 
 // 3. Ver lo que resuelve la promesa 
 // 4. establecer la estructura en la cual los casos de resolve estaran en el .then
-export const mdLinks = (route, options) => {
-  if (!isAbsolute(route)) {
-    const filesArray = pathFiles(pathToAbsolute(route));
-  };
-  const filesArray = linkExtract(path);
+export const mdLinks = (route) => {
   return new Promise((resolve, reject) => {
+    if (!path.isAbsolute(route)) {
+      const absoluteRoute = pathFiles(pathToAbsolute(route));
+      resolve(absoluteRoute);
+      // file contents are resolved
+    };
+    const filesArray = linkExtract(path);
+    return new Promise((resolve, reject) => {
     // If 
     // else la unica que me retorna una promesa es validate 
-    if (!options.validate && !options.stats) {// solo pone la ruta
-      linksExtractor(arrayOfFile)
-        .then(response => resolve(response))
-        .catch(error);
-    }
+      if (!options.validate && !options.stats) {// solo pone la ruta
+        linksExtractor(arrayOfFile)
+          .then(response => resolve(response))
+          .catch(error);
+      }
     // resolve ([]);
     // reject([]);
+    });
   });
 };
 
