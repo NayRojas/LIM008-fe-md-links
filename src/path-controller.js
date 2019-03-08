@@ -1,0 +1,63 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.linkExtract = exports.pathFiles = exports.pathToAbsolute = exports.isAbsolute = void 0;
+
+var fs = require('fs');
+
+var path = require('path');
+
+var isAbsolute = function isAbsolute(route) {
+  return path.isAbsolute(route);
+};
+
+exports.isAbsolute = isAbsolute;
+
+var pathToAbsolute = function pathToAbsolute(route) {
+  if (!isAbsolute(route)) return path.resolve(route);
+};
+
+exports.pathToAbsolute = pathToAbsolute;
+
+var pathFiles = function pathFiles(route) {
+  var pathArray = [];
+
+  if (fs.lstatSync(route).isFile()) {
+    if (path.extname(route) === '.md') {
+      pathArray.push(route);
+    }
+  } else {
+    fs.readdirSync(route).forEach(function (file) {
+      pathArray = pathArray.concat(pathFiles(path.join(route, file)));
+    });
+  }
+
+  return pathArray;
+};
+
+exports.pathFiles = pathFiles;
+
+var linkExtract = function linkExtract(arrRoutes) {
+  var objLinks = [];
+  arrRoutes.forEach(function (mdRoute) {
+    var fileContentArr = fs.readFileSync(mdRoute, 'utf-8');
+    var erLinks = /\[((.+?))\]\(().+?\)/g;
+    var erHref = /\((http|https).+?\)/g;
+    var erTextLink = /\[.+?\]/g;
+    var linksArr = fileContentArr.match(erLinks);
+    linksArr.forEach(function (link) {
+      var txtHref = link.match(erHref).toString();
+      var txtText = link.match(erTextLink).toString();
+      objLinks.push({
+        route: path.resolve(mdRoute),
+        href: txtHref.substring(1, txtHref.length - 1),
+        text: txtText.substring(1, txtText.length - 1)
+      });
+    });
+  });
+  return objLinks;
+};
+
+exports.linkExtract = linkExtract;

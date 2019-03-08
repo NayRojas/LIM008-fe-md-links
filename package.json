@@ -12,7 +12,8 @@
   "author": "nayrojas",
   "scripts": {
     "eslint": "eslint --ext .js lib/ tests/ cli.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "babel lib -d src"
   },
   "bin": {
     "md-links": "./cli.js"

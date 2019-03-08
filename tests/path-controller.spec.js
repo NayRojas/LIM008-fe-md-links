@@ -1,5 +1,5 @@
-// Aquí deberían estar los tests de la función extraer links y almacenarlos en un array de objetos --- index.js
-import { pathToAbsolute, isAbsolute, pathFiles, readPath, linkExtract } from '../lib/path-controller.js'
+import { pathToAbsolute, isAbsolute, pathFiles, readPath, linkExtract } from '../lib/path-controller.js';
+const path = require('path'); 
 
 describe.skip('isAbsolute', () => {
   it('debería ser una función', () => {
@@ -57,15 +57,17 @@ describe.skip('linkExtract', () => {
   });
   it('debería retornar un array de objetos donde cada objeto contiene el href y text de link encontrado en los archivos ', () => {
     expect(linkExtract(
-      [ 'C:\\Users\\Laboratoria\\Desktop\\canchita\\carpeta1\\README1.md',
-        'C:\\Users\\Laboratoria\\Desktop\\canchita\\README.md' ]))
+      [ 'C:\\Users\\Laboratoria\\Desktop\\Nay Rojas\\Tech training\\Projects\\Markdown\\LIM008-fe-md-links\\tests\\file-test\\file2-test\\README1.md',
+        'C:\\Users\\Laboratoria\\Desktop\\Nay Rojas\\Tech training\\Projects\\Markdown\\LIM008-fe-md-links\\tests\\file-test\\README.md' ]))
       .toEqual(
-        [ { route: 'C:\\Users\\Laboratoria\\Desktop\\canchita\\carpeta1\\README1.md',
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown' },
-        { route:'C:\\Users\\Laboratoria\\Desktop\\canchita\\README.md',
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown' } ]
+        [ 
+          { href: path.normalize('https://es.wikipedia.org/wiki/Markdown'),
+            route: path.normalize(path.join(__dirname, 'file-test/file2-test/README1.md')),
+            text: 'Markdown' },
+          { href: path.normalize('https://es.wikipedia.org/wiki/Markdowntome'),
+            route: path.normalize(path.join(__dirname, 'file-test/README.md')),
+            text: 'Markdown' } 
+        ]
       );
   });
 });

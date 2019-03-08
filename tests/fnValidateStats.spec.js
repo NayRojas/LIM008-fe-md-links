@@ -1,4 +1,5 @@
 import { fnValidateStats } from '../lib/services/fnValidateStats.js';
+const path = require('path'); 
 
 describe.skip('statsValidate', () => {
   it('debería ser una función', () => {
@@ -8,20 +9,20 @@ describe.skip('statsValidate', () => {
     fnValidateStats(
       [
         {'code': 200, 
-          'href': 'https://es.wikipedia.org/wiki/Markdown', 
-          'route': 'C:\\Users\\Laboratoria\\Desktop\\canchita\\carpeta1\\README1.md',
+          'href': path.normalize('https://es.wikipedia.org/wiki/Markdown'), 
+          'route': path.normalize(path.join(__dirname, 'tests/file-test/file2-test/README1.md')),
           'status': 'OK',
           'text': 'Markdown',
         }, 
         {'code': 404,
-          'href': 'https://es.wikipedia.org/wiki/Markdowntome', 
-          'route': 'C:\\Users\\Laboratoria\\Desktop\\canchita\\README.md',
+          'href': path.normalize('https://es.wikipedia.org/wiki/Markdowntome'), 
+          'route': path.normalize(path.join(__dirname, 'tests/file-test/README.md')),
           'status': 'FAIL',
           'text': 'Markdown',
         }, 
         {'code': 'Página no encontrada',
-          'href': 'https://es.noexiste.org/', 
-          'route': 'C:\\Users\\Laboratoria\\Desktop\\canchita\\carpeta2\\README.md',
+          'href': path.normalize('https://es.noexiste.org/'), 
+          'route': path.normalize(path.join(__dirname, 'tests/file-test/file3/README.md')),
           'status': 'FAIL',
           'text': 'Markdown',
         }]
