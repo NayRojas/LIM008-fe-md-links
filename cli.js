@@ -7,22 +7,31 @@ const options = {
   stats: false
 };
 
-mdLinks(path, options)
-  .then(links => {
+{options.validate === --v && --validate ? true : false;}
+{options.stats === --s && --stats ? true : false;}
 
-    // => [{ href, text, file }]
+mdLinks(path)
+  .then(links => {
+    console.log(`${links.file}, ${links.href}, ${links.text}`);
   })
   .catch(console.error);
 
 mdLinks(path, { validate: true })
   .then(links => {
-    // => [{ href, text, file, status, ok }]
+    console.log(`${links.route}, ${links.href}, ${links.text}, ${links.code}, ${links.status}`);
   })
   .catch(console.error);
 
-mdLinks(path)
+mdLinks(path, { stats: true })
   .then(links => {
-    // => [{ href, text, file }]
+    console.log(`${links.total}, ${links.unique}`); 
   })
   .catch(console.error);
 
+mdLinks(path, { validate: true, stats: true})
+  .then(links => {
+    console.log(`${links.total}, ${links.unique}, ${links.broken}`); 
+  })
+  .catch(console.error);
+
+console.log(mdLinks('C:\\Users\\Laboratoria\\Desktop\\Nay Rojas\\Tech training\\Projects\\Markdown\\LIM008-fe-md-links\\tests\\file-test\\file2-test\\README1.md', --validate));

@@ -1,4 +1,4 @@
-import { pathToAbsolute, isAbsolute, pathFiles, readPath, linkExtract } from '../lib/path-controller.js';
+import { pathToAbsolute, pathFiles, readPath, linkExtract } from '../lib/path-controller.js';
 const path = require('path'); 
 
 describe.skip('pathToAbsolute', () => {
@@ -49,10 +49,10 @@ describe.skip('linkExtract', () => {
         'C:\\Users\\Laboratoria\\Desktop\\Nay Rojas\\Tech training\\Projects\\Markdown\\LIM008-fe-md-links\\tests\\file-test\\README.md' ]))
       .toEqual(
         [ 
-          { href: path.normalize('https://es.wikipedia.org/wiki/Markdown'),
+          { href: 'https://es.wikipedia.org/wiki/Markdown',
             route: path.normalize(path.join(__dirname, 'file-test/file2-test/README1.md')),
             text: 'Markdown' },
-          { href: path.normalize('https://es.wikipedia.org/wiki/Markdowntome'),
+          { href: 'https://es.wikipedia.org/wiki/Markdowntome',
             route: path.normalize(path.join(__dirname, 'file-test/README.md')),
             text: 'Markdown' } 
         ]

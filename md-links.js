@@ -1,38 +1,35 @@
-import { linkExtract, isAbsolute, pathToAbsolute, pathFiles } from './lib/path-controller.js';
+import { linkExtract, pathToAbsolute, pathFiles } from './lib/path-controller.js';
 import { linkValidate } from './lib/services/fnValidate.js';
+import { fnValidateStats } from './lib/services/fnValidateStats.js';
+import { fnStats } from './lib/services/fnStats.js';
 const path = require('path');
 
-
-/**
- * 
- * @param {ruta que coloca el usuario para ser analizada en la función, es tipo string} route 
- * @param {es el segundo argumento que recibe la función el cual establece puede alvergar --validate --stats o ambas o ninguna, su tipo de dato proviene de un objeto en el que sus propiedades son booleanas} options 
- */
-// MD-links nace como una  promesa, resolve van a ser los returns de cada promesita y los reject los returns de cada caso de error que entra dentro de los reject
-// 1. Declarala como promesa y luego sacar 
-// 2. Ver las fuciones que intervienen en el caso de error 
-// 3. Ver lo que resuelve la promesa 
-// 4. establecer la estructura en la cual los casos de resolve estaran en el .then
-export const mdLinks = (route) => {
+export const mdLinks = (route, options) => {
+  const routes = path.isAbsolute(route);
+  const absoluteRoute = pathFiles(pathToAbsolute(routes));
   return new Promise((resolve, reject) => {
-    if (!path.isAbsolute(route)) {
-      const absoluteRoute = pathFiles(pathToAbsolute(route));
-      resolve(absoluteRoute);
-      // file contents are resolved
-    };
-    const filesArray = linkExtract(path);
-    return new Promise((resolve, reject) => {
-    // If 
-    // else la unica que me retorna una promesa es validate 
-      if (!options.validate && !options.stats) {// solo pone la ruta
-        linksExtractor(arrayOfFile)
-          .then(response => resolve(response))
-          .catch(error);
-      }
-    // resolve ([]);
-    // reject([]);
-    });
-  });
+    if (!options.stats && !options.validate) {
+      linkExtract(absoluteRoute)
+        .then(response => resolve(response))
+        .catch(console.error);
+    } else if (options.validate) {
+      linkExtract(absoluteRoute)
+        .then((link) => linkValidate(link))
+        .then(response => resolve(response))
+        .catch(console.error);
+    } else if (options.stats) {
+      linkExtract(absoluteRoute)
+        .then((link) => fnStats(link))
+        .then(response => resolve(response))
+        .catch(console.error);
+    } else if (options.validate && options.stats) {
+      linkExtract(absoluteRoute)
+        .then((link) => fnStats(link))
+        .then((link) => fnValidateStats(link))
+        .then(response => resolve(response))
+        .catch(console.error);
+    }
+  }).catch(console.log(err));
 };
 
 
