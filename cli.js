@@ -1,6 +1,6 @@
-#!/usr/bin/env node
 const mdLinks = require('./md-links.js');
 const [, , ...params] = process.argv;
+console.log([, , ...params]);
 
 const options = {
   validate: true,
@@ -34,4 +34,4 @@ mdLinks(path, { validate: true, stats: true})
   })
   .catch(console.error);
 
-console.log(mdLinks('C:\\Users\\Laboratoria\\Desktop\\Nay Rojas\\Tech training\\Projects\\Markdown\\LIM008-fe-md-links\\tests\\file-test\\file2-test\\README1.md', --validate));
+

@@ -16,7 +16,7 @@
     "build": "babel lib -d src"
   },
   "bin": {
-    "md-links": "./cli.js"
+    "mdlinks": "bin/mdlinks"
   },
   "repository": {
     "type": "git",

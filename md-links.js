@@ -2,34 +2,33 @@ import { linkExtract, pathToAbsolute, pathFiles } from './lib/path-controller.js
 import { linkValidate } from './lib/services/fnValidate.js';
 import { fnValidateStats } from './lib/services/fnValidateStats.js';
 import { fnStats } from './lib/services/fnStats.js';
+
 const path = require('path');
 
 export const mdLinks = (route, options) => {
-  const routes = path.isAbsolute(route);
-  const absoluteRoute = pathFiles(pathToAbsolute(routes));
-  return new Promise((resolve, reject) => {
-    if (!options.stats && !options.validate) {
-      linkExtract(absoluteRoute)
-        .then(response => resolve(response))
-        .catch(console.error);
+  {!path.isAbsolute(route) ? pathToAbsolute(route) : route; }
+  const routesArr = pathFiles(route);
+  console.log(routesArr);
+  return new Promise((resolve) => {
+    if (route) {
+      const links = linkExtract(routesArr);
+      console.log(links);
     } else if (options.validate) {
-      linkExtract(absoluteRoute)
-        .then((link) => linkValidate(link))
+      linkExtract(routesArr)
+        .then((obj) => linkValidate(obj))
         .then(response => resolve(response))
-        .catch(console.error);
+        .catch(console.log(error));
     } else if (options.stats) {
-      linkExtract(absoluteRoute)
-        .then((link) => fnStats(link))
+      linkExtract(routesArr)
+        .then((routesArr) => fnStats(routesArr))
         .then(response => resolve(response))
-        .catch(console.error);
+        .catch(console.log(error));
     } else if (options.validate && options.stats) {
-      linkExtract(absoluteRoute)
-        .then((link) => fnStats(link))
-        .then((link) => fnValidateStats(link))
+      linkExtract(routesArr)
+        .then((routesArr) => fnStats(routesArr))
+        .then((routesArr) => fnValidateStats(routesArr))
         .then(response => resolve(response))
-        .catch(console.error);
+        .catch(console.log(error));
     }
-  }).catch(console.log(err));
+  });
 };
-
-
