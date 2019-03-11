@@ -1,22 +1,22 @@
 {
-  "name": "nayrojas-md-links",
+  "name": "nayrojas-mdlinks",
   "version": "1.0.0",
   "description": "[Markdown](https://medium.com/@itsjzt/beginner-guide-to-markdown-229adce30074) es un lenguaje de marcado\r ligero muy popular entre developers. Markdown is made by John Gruber, you can use markdown to write blogs, texts, books and practically 100% of your writing work in a single format and you can easily distribute it in Word, PDFs, EPUBs, HTML, and many other formats.",
-  "main": "index.html",
+  "main": "md-links.js",
   "keywords": [
     "javascript",
     "npm",
     "jest"
   ],
+  "bin": {
+    "md-links": "./cli.js"
+  },
   "license": "MIT",
   "author": "nayrojas",
   "scripts": {
     "eslint": "eslint --ext .js lib/ tests/ cli.js",
     "test": "jest",
     "build": "babel lib -d src"
-  },
-  "bin": {
-    "mdlinks": "bin/mdlinks"
   },
   "repository": {
     "type": "git",

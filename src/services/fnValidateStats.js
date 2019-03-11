@@ -5,10 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fnValidateStats = void 0;
 
-var _fnStats = require("./fnStats.js");
-
-var _fnValidate = require("./fnValidate");
-
 /**
  * 
  * @param {array de objetos donde cada link contiene su file, href, texto, code http y OK o FAIL, de aquí extraeré aquello links que sean FAIL como la longitud (number) de los broken} arrayLinkObj 
@@ -28,7 +24,6 @@ var fnValidateStats = function fnValidateStats(arrayLinkObj) {
 
       onlyBroken.broken = brokenLinksArrayObj.length;
     });
-    console.log(onlyBroken);
     resolve(onlyBroken);
   });
 };
