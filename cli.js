@@ -1,14 +1,18 @@
 #!/usr/bin/env node
 const mdLinks = require('./md-links.js');
 const path = require('path');
-// import { mdLinks } from '../md-links.js';
+const statsLink = require('./src/services/fnStats');
+const statsBroken = require('./src/services/fnValidateStats');
+const validatePath = require('./src/path-controller');
 
-const [, , ...params] = process.argv;
+// import { mdLinks } from '../md-links.js';
 
 const options = {
   validate: false,
   stats: false
 };
+
+const [, , ...params] = process.argv;
 const [ruta, ...opts] = params;
 
 opts.forEach((option) => {
@@ -23,12 +27,21 @@ opts.forEach((option) => {
     options.stats = true;
   }
 });
+/*
+const absolutePath = validatePath.pathToAbsolute(ruta);
+const pathArr = validatePath.pathFiles(absolutePath);
+const routesArr = validatePath.linkExtract(pathArr);
+const currentPath = fs.statSync(route);
+{!path.isAbsolute(route) ? validatePath.pathToAbsolute(route) : currentPath;}
+*/
+
+
 
 if (!options.validate && !options.stats) {
   mdLinks(ruta)
     .then(response => {
       response.forEach(element => {
-        console.log(`${element.route}, ${element.href}, ${element.text}`);
+        console.log(`${element.route} \n${element.href} \n${element.text}\n`);
       });
     })
     .catch(console.error);
@@ -37,27 +50,29 @@ if (options.validate && !options.stats) {
   mdLinks(ruta, options)
     .then(response => {
       response.forEach(element => {
-        console.log(`${element.route}, ${element.href}, ${element.text}, ${element.code}, ${element.status}`);
+        console.log(`${element.route} \n${element.href} \n${element.text} \n${element.code} \n${element.status}\n`);
       });
     })
     .catch(console.error);
 }
+//hasta aquí funciona  
+
 if (options.stats && !options.validate) {
-  mdLinks(ruta, options)
-    .then(response => {
-      // response.forEach((element) => {
-      console.log(`Total: ${response.total}, \nUnique: ${response.unique}`);
-      // });
-    })
-    .catch(console.error);
-}
+  mdLinks(ruta)
+  .then(response1 => statsLink.fnStats(response1))
+      .then(stats => { 
+          console.log(`Total: ${stats.total} \nUnique: ${stats.unique}\n `);
+        })
+    .catch(console.error)
+};
+
 if (options.stats && options.validate ) {
-  mdLinks(ruta, options)
-    .then(response => {
-      // response.forEach((element) => {
-      console.log(`Total: ${response.total}, \nUnique: ${response.unique}, \nBroken: ${response.broken}`);
-      // });
-    }).catch(console.error);
+  mdLinks(ruta, {validate: true})
+  .then(response1 => statsLink.fnStats(response1))
+      .then(stats1 => { 
+          console.log(`Total: ${stats1.total} \nUnique: ${stats1.unique} \nBroken: ${stats1.broken}\n`);
+        })
+    .catch(console.error)
 }
 
 /* 

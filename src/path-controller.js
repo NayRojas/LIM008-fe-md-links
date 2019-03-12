@@ -29,7 +29,8 @@ var pathFiles = function pathFiles(route) {
   }
 
   return pathArray;
-};
+}; //1. fn debe ser convertida a pura
+
 
 exports.pathFiles = pathFiles;
 
@@ -42,15 +43,18 @@ var linkExtract = function linkExtract(arrRoutes) {
       var erHref = /\((http|https).+?\)/g;
       var erTextLink = /\[.+?\]/g;
       var linksArr = fileContentArr.match(erLinks);
-      linksArr.forEach(function (link) {
-        var txtHref = link.match(erHref).toString();
-        var txtText = link.match(erTextLink).toString();
-        objLinks.push({
-          route: path.resolve(mdRoute),
-          href: txtHref.substring(1, txtHref.length - 1),
-          text: txtText.substring(1, txtText.length - 1)
+
+      if (linksArr) {
+        linksArr.forEach(function (link) {
+          var txtHref = link.match(erHref).toString();
+          var txtText = link.match(erTextLink).toString();
+          objLinks.push({
+            route: mdRoute,
+            href: txtHref.substring(1, txtHref.length - 1),
+            text: txtText.substring(1, txtText.length - 1)
+          });
         });
-      });
+      }
     });
     resolve(objLinks);
 
