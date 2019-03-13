@@ -1,1 +1,0 @@
-// Aquí deberían ejecutra las funciones de path y options
