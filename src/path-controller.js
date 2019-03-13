@@ -29,8 +29,7 @@ var pathFiles = function pathFiles(route) {
   }
 
   return pathArray;
-}; //1. fn debe ser convertida a pura
-
+};
 
 exports.pathFiles = pathFiles;
 

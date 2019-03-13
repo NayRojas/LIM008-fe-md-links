@@ -9,13 +9,13 @@
     "jest"
   ],
   "bin": {
-    "md-links": "./cli.js"
+    "md-links": "./src/cli.js"
   },
   "license": "MIT",
   "author": "nayrojas",
   "scripts": {
     "eslint": "eslint --ext .js lib/ tests/ cli.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "babel lib -d src"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "babel-jest": "^24.1.0",
     "eslint": "^5.10.0",
     "eslint-plugin-jest": "^22.1.2",
+    "fetch-mock": "^7.3.1",
     "jest": "^24.1.0",
     "regenerator-runtime": "^0.13.1"
   },

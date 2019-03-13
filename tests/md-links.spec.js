@@ -1,4 +1,4 @@
-const mdLinks = require('..//md-links');
+const mdLinks = require('../lib/md-links');
 //import { mdLinks } from '../md-links.js';
 const path = require('path');
 

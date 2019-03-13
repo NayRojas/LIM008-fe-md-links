@@ -1,7 +1,7 @@
 import { linkValidate } from '../lib/services/fnValidate.js';
 const path = require('path');
 
-describe.skip('linkValidate', () => {
+describe('linkValidate', () => {
   it('debería ser una función', () => {
     expect(typeof linkValidate).toBe('function');
   });
