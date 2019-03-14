@@ -38,15 +38,15 @@ var linkExtract = function linkExtract(arrRoutes) {
   return new Promise(function (resolve, reject) {
     arrRoutes.forEach(function (mdRoute) {
       var fileContentArr = fs.readFileSync(mdRoute, 'utf-8');
-      var erLinks = /\[((.+?))\]\(().+?\)/g;
-      var erHref = /\((http|https).+?\)/g;
-      var erTextLink = /\[.+?\]/g;
-      var linksArr = fileContentArr.match(erLinks);
+      var regExLinks = /\[((.+?))\]\(().+?\)/g;
+      var regExHref = /\((http|https).+?\)/g;
+      var regExText = /\[.+?\]/g;
+      var linksArr = fileContentArr.match(regExLinks);
 
       if (linksArr) {
         linksArr.forEach(function (link) {
-          var txtHref = link.match(erHref).toString();
-          var txtText = link.match(erTextLink).toString();
+          var txtHref = link.match(regExHref).toString();
+          var txtText = link.match(regExText).toString();
           objLinks.push({
             route: mdRoute,
             href: txtHref.substring(1, txtHref.length - 1),

@@ -69,35 +69,52 @@ Broken: 1
 
 Visita los links para conocer el backlog e implementación de la librería.
 
-- Github project
- ```
-https://github.com/NayRojas/LIM008-fe-md-links/projects
- ```
-- Planning information
-```
-https://github.com/NayRojas/LIM008-fe-md-links/projects
- ```
+- [Github project](https://github.com/NayRojas/LIM008-fe-md-links/projects)
+
+ - [Planning information](https://docs.google.com/spreadsheets/d/1eAMD6eJ9k9ZJn2w0CKtuIy3pLffx0ZV7R_EjKERzDj0/edit?usp=sharing)
+
 
 **Duración**: 3 semanas.
 
 **Metodología**: Scrum
 
-### **Sprint 1**
+## **Sprint 1**
 
 Durante este sprint se realiza el algoritmo que dará solución al problema _extraer links de archivos markdown y presentar datos sobre estos_. Para esto se emplea:
 
 - Pseudocódigo, describiendo los pasoa a seguir del problema
 - Tabla, con la descripción de cada función que interviene en el proceso, estableciendo su input, output y tipo de dato.
 
-### **Sprint 2**
+#### Backlog de este sprint
+
+Tasks/User history | Descripción
+------------ | -------------
+Reserach phase | Investigación general sobre los topicos bases: curso Platzi, tutorial Learyounode, recursos en README, expresiones regulares, promesas
+Algoritmo | Realización de flujograma que resuelve el problema, pseudocódigo, board con la descripción de funciones(inputs, outputs)
+Arquitectura | Se establece la arquitectura y modularidad inicial para la correcta división de tareas, funciones y archivos en el proyecto
+
+## **Sprint 2**
 
 Se empiezan con los tests para dar inicio al proceso de testeo de las funciones descritas en la tabla de análisis, de esta forma aseguramos que cada función cumpla con lo establecido en el algoritmo antes diseñado.
 
 Ademas de ello, se aborda la etapa de **ingreso de la ruta** (ver flujograma).
 
-### **Sprint 3**
+Tasks/User history | Descripción
+------------ | -------------
+El usuario debe poder extraer los links | Se realizan funciones para evaluar la ruta ingresada por el usuario, hacer conversión a absoluta, extraer links en un objeto con propiedades: href, text, route. Basado en el patrón de RegEx.
+Tests | Realización de tests para tipo de datos y funciones que evaluar el ingreso de la ruta. 
+Configuraciones | Se aplican configuraciones de babel, reglas de eslint, npm, plugins.
+Validar links | Se realiza mock de fetch para evaluar la petición HTTP y los casos en los cuales la respuesta debe ser OK y FAIL. 
+
+## **Sprint 3**
 
 Las secciones **Lectura de la ruta y opciones** , son el alcance de este sprint, por ende se itera sobre el flujograma, y tests a fin de afinar el proceso de acuerdo a los bugs encontrados y refactorización sugeridas.
+
+Tasks/User history | Descripción
+------------ | -------------
+Estadisticas| Se realiza función para obtener los links totales y unicos (metodos empleados, .length y new Set).
+Broken links | Se emplea lógica en la función de estadisticas que indica que si el input tiene solo href, text y ruta, solo sacará estadisticas pero si esta recibe propieades *code* o *status*, deberá arrojar los links rotos.
+Tests | Se itera sobre los iniciales para incluir aquellos que no han sido tomados en cuenta y han surgido debido a funciones modificadas, eliminadas o agregadas durante el proceso de implementación.
 
 #### Aspectos adicionales
 
