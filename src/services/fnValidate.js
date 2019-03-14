@@ -8,7 +8,7 @@ exports.linkValidate = void 0;
 var fetch = require('node-fetch');
 
 var linkValidate = function linkValidate(arrayLinks) {
-  var mapCb = function mapCb(link) {
+  var callback = function callback(link) {
     return new Promise(function (resolve, reject) {
       fetch(link.href).then(function (res) {
         if (res.status >= 200 && res.status < 400) {
@@ -29,7 +29,7 @@ var linkValidate = function linkValidate(arrayLinks) {
     });
   };
 
-  var result = arrayLinks.map(mapCb);
+  var result = arrayLinks.map(callback);
   return Promise.all(result);
 };
 

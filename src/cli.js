@@ -43,7 +43,7 @@ opts.forEach(function (option) {
 if (!options.validate && !options.stats) {
   mdLinks(ruta).then(function (response) {
     response.forEach(function (element) {
-      console.log("".concat(element.route, " \n").concat(element.href, " \n").concat(element.text.substring(0, 50), "\n"));
+      console.log("".concat(element.route, " ").concat(element.href, " ").concat(element.text.substring(0, 50), "\n"));
     });
   }).catch(console.error);
 }
@@ -51,7 +51,7 @@ if (!options.validate && !options.stats) {
 if (options.validate && !options.stats) {
   mdLinks(ruta, options).then(function (response) {
     response.forEach(function (element) {
-      console.log("".concat(element.route, " \n").concat(element.href, " \n").concat(element.text.substring(0, 50), " \n").concat(element.code, " \n").concat(element.status, "\n"));
+      console.log("".concat(element.route, " ").concat(element.href, " ").concat(element.text.substring(0, 50), " ").concat(element.code, " ").concat(element.status, "\n"));
     });
   }).catch(console.error);
 }
