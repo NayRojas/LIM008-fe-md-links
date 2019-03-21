@@ -9,23 +9,28 @@ describe('fnStats', () => {
     fnStats(
       [  
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\file2-test\\README1.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/file2-test/README1.md`)),
           href: 'https://es.wikipedia.org/wiki/Markdown',
           text: 'Markdown'
         },
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\file3\\README.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/file3/README.md`)),
           href: 'https://es.noexiste.org/',
           text: 'Markdown'
         },
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\README.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/file2-test/README1.md`)),
+          href: 'https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg',
+          text: 'Markdown'
+        },
+        {
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/README.markdown`)),
           href: 'https://nodeschool.io/s/',
           text: 'Markdown'
         }
       ])
       .then(stats => {
-        expect(stats).toEqual({'total': 3, 'unique': 3, 'broken': 0});
+        expect(stats).toEqual({'total': 4, 'unique': 4, 'broken': 0});
         done();
       });
   });
@@ -33,17 +38,17 @@ describe('fnStats', () => {
     fnStats(
       [  
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\file2-test\\README1.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/file2-test/README1.md`)),
           href: 'https://es.wikipedia.org/wiki/Markdown',
           text: 'Markdown'
         },
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\file3\\README.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/file3/README.md`)),
           href: 'https://es.wikipedia.org/wiki/Markdown',
           text: 'Markdown'
         },
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\README.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/README.markdown`)),
           href: 'https://es.wikipedia.org/wiki/Markdown',
           text: 'Markdown'
         }
@@ -57,21 +62,21 @@ describe('fnStats', () => {
     fnStats(
       [  
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\file2-test\\README1.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/file2-test/README1.md`)),
           href: 'https://es.wikipedia.org/wiki/Markdown',
           text: 'Markdown',
           code: '500',
           status: 'FAIL'
         },
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\file3\\README.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/file3/README.md`)),
           href: 'https://es.noexiste.org/',
           text: 'Markdown',
           code: '200',
           status: 'OK'
         },
         {
-          route: path.join(`${process.cwd()}\\tests\\file-test\\README.md`),
+          route: path.resolve(path.join(`${process.cwd()}/tests/file-test/README.markdown`)),
           href: 'https://nodeschool.io/s/',
           text: 'Markdown',
           code: '403',
